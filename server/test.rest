@@ -1,2 +1,13 @@
 ### HEALTH CHECK
 GET http://localhost:3000/api/health
+
+### GENERATE CODE
+POST http://localhost:3000/pairing/generate
+
+### REDEEM CODE
+POST http://localhost:3000/pairing/redeem
+Content-Type: application/json
+
+{
+  "pairingCode": "E6CE87"
+}
