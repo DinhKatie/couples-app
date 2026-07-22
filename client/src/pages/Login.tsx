@@ -3,6 +3,7 @@ import { supabase } from '../supabaseClient.ts'
 import {Link, useNavigate} from "react-router-dom";
 
 export default function Login() {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
@@ -12,18 +13,17 @@ export default function Login() {
         e.preventDefault();
         setLoading(true);
         setError("");
-        const navigate = useNavigate();
 
         try {
-            const { error } = await supabase.auth.signInWithPassword({ email, password });
+            const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
             if (error) throw error;
+            navigate("/room");
         } catch (error: any) {
             setError(error.message);
         } finally {
             setLoading(false);
         }
-
-        navigate("/room");
+        
     }
 
     return (
