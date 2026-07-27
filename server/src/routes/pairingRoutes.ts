@@ -52,6 +52,13 @@ pairingRouter.post('/redeem', authMiddleware, async (req: AuthedRequest, res) =>
             return res.status(500).json({ error: 'Error joining couple' });
         }
 
+        // Update couple_id in the user's profile, CURRENTLY REWRITABLE
+        const {error: updateError} = await supabase.from('profiles').update({couple_id: coupleData.id}).eq('id', userId);
+        if (updateError) {
+            console.log(updateError);
+            return res.status(500).json({ error: 'Error updating user profile' });
+        }
+
         res.status(200).json({message: "Successfully redeemed"});
 
     } catch (err) {

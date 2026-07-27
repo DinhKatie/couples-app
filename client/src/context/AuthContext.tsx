@@ -4,18 +4,37 @@ import { supabase } from '../supabaseClient'
 
 interface AuthContextType {
   session: Session | null
+  profile: Profile | null
   loading: boolean
 }
 
-const AuthContext = createContext<AuthContextType>({ session: null, loading: true })
+interface Profile {
+  id: string
+  display_name: string
+}
+
+const AuthContext = createContext<AuthContextType>({ session: null, profile: null, loading: true })
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null)
+  const [profile, setProfile] = useState<Profile | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
       setSession(session)
+
+      if (session?.user) {
+        const { data, error } = await supabase.from("profiles").select("*")
+          .eq("id", session.user.id).single()
+
+        if (error) {
+          console.error(error)
+        } else {
+          setProfile(data)
+        }
+      }
+
       setLoading(false)
     })
 
@@ -27,7 +46,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ session, loading }}>
+    <AuthContext.Provider value={{ session, profile,loading }}>
       {children}
     </AuthContext.Provider>
   )

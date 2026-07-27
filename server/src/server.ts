@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import pairingRouter from "./routes/pairingRoutes.js";
+import notesRouter from "./routes/notesRoutes.js";
 
 
 // Check for valid environment variables
@@ -21,6 +22,7 @@ app.get("/api/health", (req, res) => {
 });
 
 app.use("/pairing", pairingRouter);
+app.use("/notes", notesRouter);
 
 const PORT = process.env.PORT || 3000;
 

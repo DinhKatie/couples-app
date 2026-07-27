@@ -21,6 +21,20 @@ notesRouter.get('/', authMiddleware, async (req: AuthedRequest, res) => {
 notesRouter.post('/', authMiddleware, async (req: AuthedRequest, res) => {
     const { content } = req.body;
     const userId = req.userId;
+
+    try {
+        const { data: profileData, error: profileError } = await supabase.from('profiles').select('*').eq('id', userId).single();
+        if (profileError) throw profileError;
+
+        const {data, error} = await supabase.from('notes').insert({couple_id: profileData.couple_id, sender_id: userId, content: content});
+        if (error) throw error;
+        res.status(201).json(data);
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({error: err});
+        //res.status(500).json({error: "Unexpected error posting the note"});
+    }
 })
 
 export default notesRouter;
