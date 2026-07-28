@@ -1,12 +1,29 @@
-import { useState } from 'react'
-import { supabase } from '../supabaseClient.ts'
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react'
 import { type Note } from '../components/Note.tsx';
+import { useAuth } from '../context/AuthContext.tsx';
 
 export default function Notes() {
     const [notes, setNotes] = useState<Note[]>([]);
+    const { profile, session } = useAuth();
 
-    
+    useEffect(() => {
+        const fetchNotes = async () => {
+            try {
+                const data = await fetch("http://localhost:3000/notes", {
+                    headers: {
+                        Authorization: `Bearer ${session?.access_token}`
+                    }
+                })
+                const notesData = await data.json();
+                console.log("data: ", notesData);
+                setNotes(notesData);
+            } catch (error) {
+                console.error('Error fetching notes:', error);
+            }
+        };
+
+        fetchNotes();
+    }, [profile]);
 
 
     return (

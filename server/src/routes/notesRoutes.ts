@@ -5,6 +5,7 @@ import { AuthedRequest, authMiddleware } from '../middleware/authMiddleware.js'
 const notesRouter = express.Router()
 
 // Get all notes
+// TODO: Filter by couple_id and order by created_at
 notesRouter.get('/', authMiddleware, async (req: AuthedRequest, res) => {
 
     try {

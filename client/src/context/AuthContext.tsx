@@ -11,6 +11,7 @@ interface AuthContextType {
 interface Profile {
   id: string
   display_name: string
+  couple_id: string
 }
 
 const AuthContext = createContext<AuthContextType>({ session: null, profile: null, loading: true })
