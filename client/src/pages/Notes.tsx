@@ -27,14 +27,20 @@ export default function Notes() {
 
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900">
-            <h1 className="text-4xl text-white mb-4">Notes</h1>
-            <div>
-                {notes.map(note => (
-                    <div key={note.id} className="rounded-lg bg-slate-100 p-4 mb-3">
-                        <p>{note.content}</p>
-                    </div>
-                ))}
+        <div className="min-h-screen bg-slate-900 px-4 py-8">
+            <div className="mx-auto max-w-md">
+                <h1 className="mb-6 text-center text-4xl font-bold text-white">Notes 💌</h1>
+                <div className="space-y-4">
+                    {notes.map(note => (
+                        <div key={note.id} className="rounded-2xl bg-slate-700 p-5 shadow-md transition hover:shadow-lg">
+                                <span className="font-semibold text-white">From: {note.sender.display_name}</span>
+                                <span className="ml-2 text-sm text-gray-400">{new Date(note.created_at).toLocaleString()}</span>
+                            <p className="whitespace-pre-wrap break-words text-lg text-white">
+                                {note.content}
+                            </p>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
 

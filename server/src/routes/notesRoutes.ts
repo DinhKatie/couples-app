@@ -9,7 +9,7 @@ const notesRouter = express.Router()
 notesRouter.get('/', authMiddleware, async (req: AuthedRequest, res) => {
 
     try {
-        const {data, error} = await supabase.from('notes').select('*');
+        const {data, error} = await supabase.from('notes').select(`*, sender:profiles(display_name)`);
         if (error) throw error;
         res.json(data);
     } catch (err) {

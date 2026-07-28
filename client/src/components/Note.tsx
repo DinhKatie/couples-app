@@ -5,4 +5,7 @@ export interface Note {
     sender_id: string;
     content: string;
     created_at: string;
+    sender: {
+        display_name: string;
+    }
 }
