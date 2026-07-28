@@ -6,17 +6,21 @@ export default function Notes() {
     const [notes, setNotes] = useState<Note[]>([]);
     const { profile, session } = useAuth();
 
+    const [draft, setDraft] = useState("");
+    const [sending, setSending] = useState(false);
+
+    // TODO: fetch notes thru realtime
     useEffect(() => {
         const fetchNotes = async () => {
             try {
-                const data = await fetch("http://localhost:3000/notes", {
-                    headers: {
-                        Authorization: `Bearer ${session?.access_token}`
-                    }
+                fetch("http://localhost:3000/notes", {
+                    headers: { Authorization: `Bearer ${session?.access_token}`}
                 })
-                const notesData = await data.json();
-                console.log("data: ", notesData);
-                setNotes(notesData);
+                .then(response => response.json())
+                .then(notesData => {
+                    console.log("data: ", notesData);
+                    setNotes(notesData);
+                });
             } catch (error) {
                 console.error('Error fetching notes:', error);
             }
@@ -25,11 +29,48 @@ export default function Notes() {
         fetchNotes();
     }, [profile]);
 
+    async function sendNote() {
+        if (!draft.trim()) return; // Don't send empty notes
+        setSending(true);
+        try {
+            const response = await fetch("http://localhost:3000/notes", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${session?.access_token}`
+                },
+                body: JSON.stringify({ content: draft })
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error sending note: ${response.statusText}`);
+            }
+        }
+        catch (error) {
+            console.error('Error sending note:', error);
+        } finally {
+            setSending(false);
+            setDraft(""); //Reset
+        }
+    }
+
 
     return (
         <div className="min-h-screen bg-slate-900 px-4 py-8">
             <div className="mx-auto max-w-md">
                 <h1 className="mb-6 text-center text-4xl font-bold text-white">Notes 💌</h1>
+
+                <div className="mb-6 flex items-center gap-2">
+                    <input type="text" value={draft} onChange={(e) => setDraft(e.target.value)}
+                        placeholder="Write a note..."
+                        className="flex-1 rounded-lg border border-gray-300 bg-slate-800 p-3 text-white focus:border-blue-500 focus:outline-none"
+                    />
+                    <button onClick={sendNote} disabled={sending}
+                        className={`rounded-lg p-3 font-semibold text-white ${sending ? 'bg-gray-500' : 'bg-rose-300 hover:bg-rose-400'}`}>
+                        {sending ? "Sending..." : "Send"}
+                    </button>
+                </div>
+
                 <div className="space-y-4">
                     {notes.map(note => (
                         <div key={note.id} className="rounded-2xl bg-slate-700 p-5 shadow-md transition hover:shadow-lg">
