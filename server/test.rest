@@ -22,3 +22,11 @@ Content-Type: application/json
 {
   "content": "This is a test note."
 }
+
+### UPDATE MOOD
+PATCH http://localhost:3000/mood
+Content-Type: application/json
+
+{
+  "name": "Sad"
+}

@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import { useAuth } from '../context/AuthContext.tsx';
 
 export const moods = [
     { name: "Happy", emoji: "😊", color: "bg-yellow-300" },
@@ -13,6 +14,7 @@ export default function MoodPicker({ onClose, onError, onSelectMood}:
     { onClose: () => void, onError: (message: string)=>void, onSelectMood: (mood:string) => void}) {
 
     const pickerRef = useRef<HTMLDivElement>(null);
+    const { session } = useAuth();
 
     //If anywhere else is clicked, close the mood picker
     useEffect(() => {
@@ -29,13 +31,15 @@ export default function MoodPicker({ onClose, onError, onSelectMood}:
     }, [onClose]);
 
     async function selectMood(mood: { name: string, emoji: string, color: string }) {
+        onError("");
         try {
             console.log("Selected:", mood);
 
             const response = await fetch("/api/mood", {
-                method: "POST",
+                method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${session?.access_token}`,
                 },
                 body: JSON.stringify(mood),
             });
