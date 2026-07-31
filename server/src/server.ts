@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import pairingRouter from "./routes/pairingRoutes.js";
 import notesRouter from "./routes/notesRoutes.js";
+import moodRouter from "./routes/moodRoutes.js";
 
 
 // Check for valid environment variables
@@ -23,6 +24,7 @@ app.get("/api/health", (req, res) => {
 
 app.use("/pairing", pairingRouter);
 app.use("/notes", notesRouter);
+app.use("/mood", moodRouter);
 
 const PORT = process.env.PORT || 3000;
 

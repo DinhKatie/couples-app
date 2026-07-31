@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext.tsx';
 
 export default function Notes() {
     const [notes, setNotes] = useState<Note[]>([]);
-    const { profile, session } = useAuth();
+    const { session } = useAuth();
 
     const [draft, setDraft] = useState("");
     const [sending, setSending] = useState(false);
@@ -13,27 +13,26 @@ export default function Notes() {
     useEffect(() => {
         const fetchNotes = async () => {
             try {
-                fetch("http://localhost:3000/notes", {
+                const response = await fetch("/api/notes", {
                     headers: { Authorization: `Bearer ${session?.access_token}`}
                 })
-                .then(response => response.json())
-                .then(notesData => {
+                
+                const notesData = await response.json();
                     console.log("data: ", notesData);
                     setNotes(notesData);
-                });
             } catch (error) {
                 console.error('Error fetching notes:', error);
             }
         };
 
         fetchNotes();
-    }, [profile]);
+    }, [session]);
 
     async function sendNote() {
         if (!draft.trim()) return; // Don't send empty notes
         setSending(true);
         try {
-            const response = await fetch("http://localhost:3000/notes", {
+            const response = await fetch("/api/notes", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -1,4 +1,4 @@
-import {useRef, useEffect} from "react";
+import { useRef, useEffect } from "react";
 
 export const moods = [
     { name: "Happy", emoji: "😊", color: "bg-yellow-300" },
@@ -9,7 +9,9 @@ export const moods = [
     { name: "Sad", emoji: "🥲", color: "bg-slate-300" },
 ];
 
-export default function MoodPicker({ onClose }: { onClose: () => void }) {
+export default function MoodPicker({ onClose, onError, onSelectMood}: 
+    { onClose: () => void, onError: (message: string)=>void, onSelectMood: (mood:string) => void}) {
+
     const pickerRef = useRef<HTMLDivElement>(null);
 
     //If anywhere else is clicked, close the mood picker
@@ -26,10 +28,32 @@ export default function MoodPicker({ onClose }: { onClose: () => void }) {
         };
     }, [onClose]);
 
-    function selectMood(mood: { name: string; emoji: string; color: string }) {
-        console.log("Selected:", mood);
+    async function selectMood(mood: { name: string, emoji: string, color: string }) {
+        try {
+            console.log("Selected:", mood);
 
-        
+            const response = await fetch("/api/mood", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(mood),
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                onError(result.message);
+                return;
+            }
+
+            onSelectMood(mood.name)
+            console.log(result);
+
+        } catch (error) {
+            console.error(error);
+            onError("Couldn't save your mood");
+        }
 
         onClose();
     }
@@ -39,7 +63,7 @@ export default function MoodPicker({ onClose }: { onClose: () => void }) {
             <div ref={pickerRef} className="grid grid-cols-3 gap-4">
                 {moods.map((mood) => (
                     <button key={mood.name} onClick={() => selectMood(mood)}
-                    className="flex flex-col items-center justify-center rounded-lg bg-slate-700 border border-gray-400 shadow-lg p-4 text-white">
+                        className="flex flex-col items-center justify-center rounded-lg bg-slate-700 border border-gray-400 shadow-lg p-4 text-white">
                         <span className="text-3xl">{mood.emoji}</span>
                         <span className="mt-2 text-sm">{mood.name}</span>
                     </button>

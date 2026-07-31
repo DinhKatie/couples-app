@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import { supabase } from '../supabaseClient.ts'
 import { Link, useNavigate } from "react-router-dom";
 import { roomItems } from '../components/RoomItems.tsx';
 import { useAuth } from '../context/AuthContext.tsx';
