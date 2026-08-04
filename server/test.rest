@@ -28,6 +28,26 @@ Content-Type: application/json
   }
 }
 
+### Login KATIE
+POST https://folrqkobeughrlhjswia.supabase.co/auth/v1/token?grant_type=password
+apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZvbHJxa29iZXVnaHJsaGpzd2lhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0MDMwMTQsImV4cCI6MjA5OTk3OTAxNH0.7fIu5erEc1BLLVeiEWbEMFFGmgHh5znRQEWuPM1aeBA
+Content-Type: application/json
+
+{
+  "email": "katie@gmail.com",
+  "password": "password"
+}
+
+### Login STEVE
+POST https://folrqkobeughrlhjswia.supabase.co/auth/v1/token?grant_type=password
+apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZvbHJxa29iZXVnaHJsaGpzd2lhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0MDMwMTQsImV4cCI6MjA5OTk3OTAxNH0.7fIu5erEc1BLLVeiEWbEMFFGmgHh5znRQEWuPM1aeBA
+Content-Type: application/json
+
+{
+  "email": "steve@gmail.com",
+  "password": "password"
+}
+
 ### CREATE PROFILE
 POST https://folrqkobeughrlhjswia.supabase.co/rest/v1/profiles
 apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZvbHJxa29iZXVnaHJsaGpzd2lhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0MDMwMTQsImV4cCI6MjA5OTk3OTAxNH0.7fIu5erEc1BLLVeiEWbEMFFGmgHh5znRQEWuPM1aeBA
