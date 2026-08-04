@@ -1,32 +1,108 @@
+@steve = eyJhbGciOiJFUzI1NiIsImtpZCI6ImE0ZTY5YzU1LTIxYTYtNDY0My1hNmM2LWMxNzVhZTM1M2NmYSIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2ZvbHJxa29iZXVnaHJsaGpzd2lhLnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiI1NDQyYWMyZi1iNjBkLTQ1YzMtOTkzMC1lZTk2N2JmOWY2OGEiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzg1ODQwMDk0LCJpYXQiOjE3ODU4MzY0OTQsImVtYWlsIjoic3RldmVAZ21haWwuY29tIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCJdfSwidXNlcl9tZXRhZGF0YSI6eyJkaXNwbGF5X25hbWUiOiJTdGV2ZSIsImVtYWlsIjoic3RldmVAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBob25lX3ZlcmlmaWVkIjpmYWxzZSwic3ViIjoiNTQ0MmFjMmYtYjYwZC00NWMzLTk5MzAtZWU5NjdiZjlmNjhhIn0sInJvbGUiOiJhdXRoZW50aWNhdGVkIiwiYWFsIjoiYWFsMSIsImFtciI6W3sibWV0aG9kIjoicGFzc3dvcmQiLCJ0aW1lc3RhbXAiOjE3ODU4MzY0OTR9XSwic2Vzc2lvbl9pZCI6IjY0M2ZmOGFjLWRiYjEtNGRjNC05ZjdkLTk0OWE3NjczNTUyYiIsImlzX2Fub255bW91cyI6ZmFsc2V9.yokndvYXj2pOnAO9hY7JCX5Z700saC_o4Q9uUh3svvY8-xm6fQ-iGBcjKDyg-Zt7c6EI9GH0QSUfh0SsADyIgw
+@katie = eyJhbGciOiJFUzI1NiIsImtpZCI6ImE0ZTY5YzU1LTIxYTYtNDY0My1hNmM2LWMxNzVhZTM1M2NmYSIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2ZvbHJxa29iZXVnaHJsaGpzd2lhLnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiI0Mzk5NWY2Zi05ODRlLTQ5YzItOTdhOC04N2ExZjAzMDFkYzYiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzg1ODQwMTIzLCJpYXQiOjE3ODU4MzY1MjMsImVtYWlsIjoia2F0aWVAZ21haWwuY29tIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCJdfSwidXNlcl9tZXRhZGF0YSI6eyJkaXNwbGF5X25hbWUiOiJLYXRpZSIsImVtYWlsIjoia2F0aWVAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBob25lX3ZlcmlmaWVkIjpmYWxzZSwic3ViIjoiNDM5OTVmNmYtOTg0ZS00OWMyLTk3YTgtODdhMWYwMzAxZGM2In0sInJvbGUiOiJhdXRoZW50aWNhdGVkIiwiYWFsIjoiYWFsMSIsImFtciI6W3sibWV0aG9kIjoicGFzc3dvcmQiLCJ0aW1lc3RhbXAiOjE3ODU4MzY1MjN9XSwic2Vzc2lvbl9pZCI6Ijc5NjZlYmFmLTkyMTMtNDIwYS1iYWIzLWE2YjZmN2Y1YTU4MSIsImlzX2Fub255bW91cyI6ZmFsc2V9.XKch7zPfmsXB1FIaZSGPwL_f4jxUdtIa8zUs0660Y_zlSszzlRQ-Pv3UXto64D_qsiFxFW_8p0yAbiFGqz4ePQ
+@steveId = 5442ac2f-b60d-45c3-9930-ee967bf9f68a
+@katieId = 43995f6f-984e-49c2-97a8-87a1f0301dc6
+### SIGN UP
+POST https://folrqkobeughrlhjswia.supabase.co/auth/v1/signup
+apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZvbHJxa29iZXVnaHJsaGpzd2lhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0MDMwMTQsImV4cCI6MjA5OTk3OTAxNH0.7fIu5erEc1BLLVeiEWbEMFFGmgHh5znRQEWuPM1aeBA
+Content-Type: application/json
+
+{
+  "email": "steve@gmail.com",
+  "password": "password",
+  "data": {
+    "display_name": "Steve"
+  }
+}
+
+### SIGN UP
+POST https://folrqkobeughrlhjswia.supabase.co/auth/v1/signup
+apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZvbHJxa29iZXVnaHJsaGpzd2lhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0MDMwMTQsImV4cCI6MjA5OTk3OTAxNH0.7fIu5erEc1BLLVeiEWbEMFFGmgHh5znRQEWuPM1aeBA
+Content-Type: application/json
+
+{
+  "email": "katie@gmail.com",
+  "password": "password",
+  "data": {
+    "display_name": "Katie"
+  }
+}
+
+### CREATE PROFILE
+POST https://folrqkobeughrlhjswia.supabase.co/rest/v1/profiles
+apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZvbHJxa29iZXVnaHJsaGpzd2lhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0MDMwMTQsImV4cCI6MjA5OTk3OTAxNH0.7fIu5erEc1BLLVeiEWbEMFFGmgHh5znRQEWuPM1aeBA
+Authorization: Bearer {{katie}}
+Content-Type: application/json
+Prefer: return=representation
+
+{
+  "id": "{{katieId}}",
+  "display_name": "Katie"
+}
+
+### CREATE PROFILE
+POST https://folrqkobeughrlhjswia.supabase.co/rest/v1/profiles
+apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZvbHJxa29iZXVnaHJsaGpzd2lhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0MDMwMTQsImV4cCI6MjA5OTk3OTAxNH0.7fIu5erEc1BLLVeiEWbEMFFGmgHh5znRQEWuPM1aeBA
+Authorization: Bearer {{steve}}
+Content-Type: application/json
+Prefer: return=representation
+
+{
+  "id": "{{steveId}}",
+  "display_name": "Steve"
+}
+
+
 ### HEALTH CHECK
 GET http://localhost:3000/api/health
 
 ### GENERATE CODE
 POST http://localhost:3000/pairing/generate
+Content-Type: application/json
+Authorization: Bearer {{katie}}
 
 ### REDEEM CODE
 POST http://localhost:3000/pairing/redeem
 Content-Type: application/json
+Authorization: Bearer {{steve}}
 
 {
-  "pairingCode": "E6CE87"
+  "pairingCode": "3A798A"
 }
 
-### GET NOTES
+### KATIE GET NOTES
 GET http://localhost:3000/notes
+Content-Type: application/json
+Authorization: Bearer: {{katie}}
 
-### ADD NOTE
+### STEVE GET NOTES
+GET http://localhost:3000/notes
+Content-Type: application/json
+Authorization: Bearer: {{steve}}
+
+### KATIE ADD NOTE
 POST http://localhost:3000/notes
 Content-Type: application/json
+Authorization: Bearer: {{katie}}
 
 {
   "content": "This is a test note."
 }
 
-### UPDATE MOOD
+### KATIE UPDATE MOOD
 PATCH http://localhost:3000/mood
 Content-Type: application/json
+Authorization: Bearer: {{katie}}
 
 {
   "name": "Sad"
+}
+
+### STEVE UPDATE MOOD
+PATCH http://localhost:3000/mood
+Content-Type: application/json
+Authorization: Bearer: {{steve}}
+
+{
+  "name": "Loved"
 }

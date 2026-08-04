@@ -3,6 +3,7 @@ import SignUp from './pages/Signup'
 import Room from './pages/Room'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Notes from './pages/Notes'
+import Pair from './pages/Pair'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/room" element={<Room />} />
         <Route path="/notes" element={<Notes />} />
+        <Route path="/pair" element={<Pair />} />
       </Routes>
     </>
   )

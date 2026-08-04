@@ -17,7 +17,7 @@ export default function Login() {
         try {
             const { error } = await supabase.auth.signInWithPassword({ email: email.trim(), password });
             if (error) throw error;
-            navigate("/room");
+            navigate("/pair");
         } catch (error: any) {
             setError(error.message);
         } finally {
