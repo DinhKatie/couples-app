@@ -4,9 +4,15 @@ import Room from './pages/Room'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Notes from './pages/Notes'
 import Pair from './pages/Pair'
+import { useAuth } from './context/AuthContext'
 
 function App() {
+  const { session, loading } = useAuth();
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  
   return (
     <>
       <Routes>

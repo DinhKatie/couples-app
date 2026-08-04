@@ -4,13 +4,14 @@ import { useAuth } from '../context/AuthContext.tsx';
 
 export default function Notes() {
     const [notes, setNotes] = useState<Note[]>([]);
-    const { session } = useAuth();
+    const { session, loading } = useAuth();
 
     const [draft, setDraft] = useState("");
     const [sending, setSending] = useState(false);
 
     // TODO: fetch notes thru realtime
     useEffect(() => {
+        if (loading || !session) return;
         const fetchNotes = async () => {
             try {
                 const response = await fetch("/api/notes", {
@@ -26,7 +27,7 @@ export default function Notes() {
         };
 
         fetchNotes();
-    }, [session]);
+    }, [session, loading]);
 
     async function sendNote() {
         if (!draft.trim()) return; // Don't send empty notes
