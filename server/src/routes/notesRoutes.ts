@@ -5,11 +5,11 @@ import { AuthedRequest, authMiddleware } from '../middleware/authMiddleware.js'
 const notesRouter = express.Router()
 
 // Get all notes
-// TODO: Filter by couple_id and order by created_at
+// TODO: Filter by couple_id
 notesRouter.get('/', authMiddleware, async (req: AuthedRequest, res) => {
 
     try {
-        const {data, error} = await supabase.from('notes').select(`*, sender:profiles(display_name)`);
+        const {data, error} = await supabase.from('notes').select(`*, sender:profiles(display_name)`).order("created_at", {ascending: false});
         if (error) throw error;
         res.json(data);
     } catch (err) {

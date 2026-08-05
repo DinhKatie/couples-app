@@ -5,6 +5,7 @@ import pairingRouter from "./routes/pairingRoutes.js";
 import notesRouter from "./routes/notesRoutes.js";
 import moodRouter from "./routes/moodRoutes.js";
 import profileRouter from "./routes/profileRoutes.js";
+import photosRouter from "./routes/photosRoutes.js";
 
 
 // Check for valid environment variables
@@ -27,6 +28,7 @@ app.use("/pairing", pairingRouter);
 app.use("/notes", notesRouter);
 app.use("/mood", moodRouter);
 app.use("/", profileRouter)
+app.use("/photos", photosRouter)
 
 const PORT = process.env.PORT || 3000;
 

@@ -5,6 +5,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import Notes from './pages/Notes'
 import Pair from './pages/Pair'
 import { useAuth } from './context/AuthContext'
+import Photos from './pages/Photos'
 
 function App() {
   const { session, loading } = useAuth();
@@ -22,6 +23,7 @@ function App() {
         <Route path="/room" element={<Room />} />
         <Route path="/notes" element={<Notes />} />
         <Route path="/pair" element={<Pair />} />
+        <Route path="/photos" element={<Photos />} />
       </Routes>
     </>
   )
