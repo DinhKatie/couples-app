@@ -2,12 +2,12 @@ import { useRef, useEffect } from "react";
 import { useAuth } from '../context/AuthContext.tsx';
 
 export const moods = [
-    { name: "Happy", emoji: "😊", color: "bg-yellow-300" },
-    { name: "Loved", emoji: "❤️", color: "bg-red-300" },
-    { name: "Calm", emoji: "😌", color: "bg-blue-300" },
-    { name: "Tired", emoji: "😴", color: "bg-purple-300" },
-    { name: "Excited", emoji: "🤩", color: "bg-orange-300" },
-    { name: "Sad", emoji: "🥲", color: "bg-slate-300" },
+    { name: "Happy", emoji: "😊", color: "hue-rotate(30deg)" },
+    { name: "Loved", emoji: "❤️", color: "hue-rotate(280deg)" },
+    { name: "Calm", emoji: "😌", color: "hue-rotate(100deg)" },
+    { name: "Tired", emoji: "😴", color: "hue-rotate(180deg)" },
+    { name: "Excited", emoji: "🤩", color: "hue-rotate(330deg)" },
+    { name: "Sad", emoji: "🥲", color: "hue-rotate(200deg)" },
 ];
 
 export default function MoodPicker({ onClose, onError, onSelectMood}: 
@@ -63,7 +63,7 @@ export default function MoodPicker({ onClose, onError, onSelectMood}:
     }
 
     return (
-        <div className="absolute mt-2 ml-2 z-50 w-70 rounded-lg bg-slate-800 p-4 shadow-lg">
+        <div className="absolute left-full top-1/2 -translate-y-1/2 ml-2 z-50 w-70 rounded-lg bg-slate-800 p-4 shadow-lg">
             <div ref={pickerRef} className="grid grid-cols-3 gap-4">
                 {moods.map((mood) => (
                     <button key={mood.name} onClick={() => selectMood(mood)}
