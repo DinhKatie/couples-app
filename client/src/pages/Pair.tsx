@@ -1,32 +1,17 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 export default function Pair() {
-    const { session } = useAuth();
+    const { session, loading, profile } = useAuth();
     const navigate = useNavigate();
 
     const [pairingCode, setPairingCode] = useState("");
     const [generatedCode, setGeneratedCode] = useState("");
     const [error, setError] = useState("");
 
-    useEffect(() => {
-        checkPairStatus();
-    }, []);
-
-    async function checkPairStatus() {
-        const response = await fetch("/api/profile", {
-            headers: {
-                Authorization: `Bearer ${session?.access_token}`
-            }
-        });
-
-        const profile = await response.json();
-
-        if (profile.couple_id) {
-            navigate("/room");
-        }
-    }
+    if (loading) return <div className="min-h-screen bg-slate-900" />;
+    if (profile?.couple_id) return <Navigate to="/room" replace />;
 
     async function generateCode() {
         const response = await fetch("/api/pairing/generate", {

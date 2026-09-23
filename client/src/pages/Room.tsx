@@ -12,11 +12,33 @@ export default function Room() {
         <div className="w-screen h-screen overflow-hidden bg-slate-900 flex flex-col items-center justify-center">
             <h1 className="text-white">Current user: {profile?.display_name} </h1>
             <RoomCanvas>
+                {/* My Mood Lamp */}
                 <RoomItem x={1200} y={720} width={150} height={150}>
                     <img src="/Stool.png"/>
                 </RoomItem>
-                <RoomItem x={1215} y={450} width={120} height={80}>
+                <RoomItem x={1230} y={490} width={100} height={80}>
                     <MoodLamp></MoodLamp>
+                </RoomItem>
+
+                {/* Partner Mood Lamp */}
+                <RoomItem x={1400} y={780} width={150} height={150}>
+                    <img src="/Stool.png"/>
+                </RoomItem>
+                <RoomItem x={1430} y={550} width={100} height={80}>
+                    <MoodLamp displayMood={"Calm"}></MoodLamp>
+                </RoomItem>
+
+                {/*Drawer, Notes, Photo Frames*/}
+                <RoomItem x={466} y={575} width={414} height={260}>
+                    <img src="/Drawerdesk.png"/>
+                </RoomItem>
+                <RoomItem x={415} y={159} width={353} height={332}>
+                    <img src="/Photo Frames.png"/>
+                </RoomItem>
+                <RoomItem x={673} y={424} width={146} height={109}>
+                    <div onClick={() => navigate("/notes")} className="w-full h-full cursor-pointer">
+                        <img src="/Notes.png" />
+                    </div>
                 </RoomItem>
             </RoomCanvas>
             {/* <MoodLamp/>

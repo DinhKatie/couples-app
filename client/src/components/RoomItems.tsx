@@ -17,11 +17,12 @@ interface RoomItemProps {
     image?: string,
     route?: string,
     children: React.ReactNode,
+    onClick?: () => void,
 }
 
-export default function RoomItem({ x, y, width, height, children }: RoomItemProps) {
+export default function RoomItem({ x, y, width, height, children, onClick }: RoomItemProps) {
     return (
-        <div className="absolute" style={{
+        <div className="absolute" onClick={onClick} style={{
                 left: `${(x / 1920) * 100}%`,
                 top: `${(y / 1080) * 100}%`,
                 width: `${(width / 1920) * 100}%`,

@@ -17,14 +17,15 @@ interface Profile {
 const AuthContext = createContext<AuthContextType>({ session: null, profile: null, loading: true })
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-	const [session, setSession] = useState<Session | null>(null)
-	const [profile, setProfile] = useState<Profile | null>(null)
+	const [session, setSession] = useState<Session | null>(null) //Supabase session
+	const [profile, setProfile] = useState<Profile | null>(null) //Profile data
 	const [loading, setLoading] = useState(true)
 
 	async function loadProfile(session: Session | null) {
 		setSession(session)
 
 		if (session?.user) {
+			setLoading(true)
 			const { data, error } = await supabase.from("profiles").select("*")
 				.eq("id", session.user.id).single()
 
