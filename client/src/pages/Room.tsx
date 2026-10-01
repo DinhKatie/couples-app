@@ -12,6 +12,12 @@ export default function Room() {
         <div className="w-screen h-screen overflow-hidden bg-slate-900 flex flex-col items-center justify-center">
             <h1 className="text-white">Current user: {profile?.display_name} </h1>
             <RoomCanvas>
+                
+                {/*Window*/}
+                <RoomItem x={905} y={170} width={601} height={347}>
+                    <img src="/Windowwindow.png"/>
+                </RoomItem>
+                
                 {/* My Mood Lamp */}
                 <RoomItem x={1200} y={720} width={150} height={150}>
                     <img src="/Stool.png"/>
@@ -40,6 +46,7 @@ export default function Room() {
                         <img src="/Notes.png" />
                     </div>
                 </RoomItem>
+
             </RoomCanvas>
             {/* <MoodLamp/>
             <div className="grid grid-cols-2 gap-10 text-white">
